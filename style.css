@@ -1,0 +1,216 @@
+:root {
+    --bg-main: #0b0e14;
+    --card-bg: #151a23;
+    --card-border: #2a303c;
+    --accent: #6366f1; /* İndigo */
+    --accent-hover: #4f46e5;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --green: #10b981;
+    --red: #ef4444;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--text-main);
+}
+
+.status {
+    font-size: 0.9rem;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--green);
+    animation: pulse 2s infinite;
+}
+
+/* BENTO GRID LAYOUT */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+/* MOBİL UYUM */
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* KART GENEL STİLİ */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card h3 {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* 1. TOPLAM BAKİYE (Üstte geniş yer kaplar) */
+.total-balance-card {
+    grid-column: 1 / -1; /* Tüm satırı kapla */
+    background: linear-gradient(135deg, var(--card-bg) 0%, #1e1b4b 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.balance-wrapper {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.pnl-wrapper {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.3);
+}
+
+/* 2. EKLEME FORMU (Sol Sütun) */
+.add-asset-card {
+    height: fit-content;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    color: var(--text-muted);
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    background: #0f1218;
+    border: 1px solid var(--card-border);
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+    font-family: inherit;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--accent);
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+/* 3. LİSTE (Sağ Sütun) */
+.assets-list-card {
+    min-height: 400px;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.asset-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 40px;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-size: 0.95rem;
+}
+
+.asset-name { font-weight: 700; }
+.asset-price { font-family: monospace; }
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--card-border);
+    cursor: pointer;
+    transition: 0.2s;
+}
+.delete-btn:hover { color: var(--red); }
+
+/* RENKLER */
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.bg-green-soft { background: rgba(16, 185, 129, 0.1); color: var(--green); }
+.bg-red-soft { background: rgba(239, 68, 68, 0.1); color: var(--red); }
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}

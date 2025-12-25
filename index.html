@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS TRADER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-layer-group"></i> NEXUS
+            </div>
+            <div class="status">
+                <span class="live-dot"></span> CANLI VERİ
+            </div>
+        </header>
+
+        <div class="bento-grid">
+            
+            <div class="card total-balance-card">
+                <h3>TOPLAM PORTFÖY DEĞERİ</h3>
+                <div class="balance-wrapper">
+                    <span class="currency">₺</span>
+                    <span id="totalBalance">0.00</span>
+                </div>
+                <div class="pnl-wrapper" id="totalPnl">
+                    Hesaplanıyor...
+                </div>
+            </div>
+
+            <div class="card add-asset-card">
+                <h3><i class="fa-solid fa-plus"></i> VARLIK EKLE</h3>
+                <form id="addAssetForm">
+                    <div class="input-group">
+                        <label>Coin Sembolü</label>
+                        <select id="coinSymbol">
+                            <option value="BTCTRY">Bitcoin (BTC)</option>
+                            <option value="ETHTRY">Ethereum (ETH)</option>
+                            <option value="SOLTRY">Solana (SOL)</option>
+                            <option value="AVAXTRY">Avalanche (AVAX)</option>
+                            <option value="XRPTRY">Ripple (XRP)</option>
+                            <option value="USDTTRY">Tether (USDT)</option>
+                            <option value="DOGETRY">Dogecoin (DOGE)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Miktar (Adet)</label>
+                        <input type="number" id="coinAmount" step="any" placeholder="0.00" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Alış Maliyeti (Birim Fiyat ₺)</label>
+                        <input type="number" id="coinPrice" step="any" placeholder="₺ Fiyat" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">PORTFÖYE EKLE</button>
+                </form>
+            </div>
+
+            <div class="card assets-list-card">
+                <h3>VARLIKLARIM</h3>
+                <div class="table-header">
+                    <span>Varlık</span>
+                    <span>Miktar</span>
+                    <span>Anlık Değer</span>
+                    <span>Kar/Zarar</span>
+                    <span>İşlem</span>
+                </div>
+                <div id="assetsContainer" class="assets-container">
+                    <div class="loading">Veriler yükleniyor...</div>
+                </div>
+            </div>
+
+            <div class="card market-ticker">
+                <h3>MARKET DURUMU</h3>
+                <div id="tickerGrid" class="ticker-grid"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
